@@ -1,0 +1,166 @@
+                                    ENUM vs INHERITANCE
+                               ==============================
+
+Every enum is always Direct child class of Java.lang.enum And hence our enum cant extend any other enum
+because Java won't support multiple inheritance.
+
+Every enum is always final implicitly, And hence, for our enum, we cant create child enum.
+
+Because of the above reasons, we can conclude Inheritance concept is not applicable explicitly And
+we can't use extends keyword for enum.
+
+An enum can implement any number of interfaces.
+
+interface X{
+
+}
+
+enum Y implements X{
+
+}
+
+-------------------------------------------------------------------------------------------------------
+                            java.lang.Enum
+
+Every enough in Java is direct child class of java.lang.Enum. And hence this class acts
+as the base class for all Java enums. It is an abstract class and the direct child class of object
+It implements serializable and comparable interfaces.
+
+
+--------------------------------------------------------------------------------------------------------
+
+                                  values()
+
+Every enum implicitly contains values method To list out all values present in Enum
+    "Beer[] values = Beer.values();"
+
+Values method is not present in java.lang.Enum and object classes. Enum keyword implicitly provides
+this method.
+
+------------------------------------------------------------------------------------------------
+
+                               ordinal()
+
+Inside Enum Order of constant is important  And we can represent this order by using ordinal value .
+
+We can find ordinary value of Enum Constant By using ordinal method
+
+Ordinal Valley is zero base like array Index.
+
+public enum Beer {
+
+    KF, KO, RC, FO;
+}
+
+class Test{
+    public static void main(String[] args) {
+        Beer[] values = Beer.values();
+        for (Beer b:values) {
+            System.out.println(b+" -> "+b.ordinal());
+        }
+    }
+}
+
+KF -> 0
+KO -> 1
+RC -> 2
+FO -> 3
+
+---------------------------------------------------------------------------------------------------
+
+                                Speciality of Java Enum
+                     ===========================================
+
+In old languages kingdom we can take only constants.  But in Java enum, in addition to constants
+we can take methods, constructors, normal variables etc.
+
+In Java Enum we declare the main method. And we can run enum class from command prompt.
+
+public enum Fish {
+    STAR, GUPPY, GOLD;
+
+    public static void main(String[] args) {
+        System.out.println("Enum main method");
+    }
+}
+
+In addition to constants, if you take any extra member like method  Then list of constants should be in first line
+And should end with a semicolon.
+
+public enum Fish {
+    STAR, GUPPY, GOLD;
+
+    public static void main(String[] args) {
+        System.out.println("Enum main method");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

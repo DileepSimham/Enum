@@ -1,0 +1,189 @@
+An enum can contain constructor. Enum constructor will be executed separately For every enum constant
+At the time of enum class loading automatically.
+
+public enum Beer {
+
+    KF,KO,RC,FO;
+
+    Beer(){
+        System.out.println("constructor");
+    }
+}
+class Test{
+    public static void main(String[] args) {
+        Beer b=Beer.RC;
+        System.out.println("Hello");
+    }
+}
+
+//output
+
+constructor
+constructor
+constructor
+constructor
+Hello
+
+We cannot create enum objects directly, and hence we can't invoke enum constructor directly.
+
+public enum Beer2 {
+
+    KF(70),KO(80),RC(90),FO;
+
+    int price;
+    Beer2(int price) {
+        this.price=price;
+    }
+
+    Beer2() {
+        this.price=65;
+    }
+
+    public int getPrice(){
+        return price;
+    }
+}
+
+class Test2{
+    public static void main(String[] args) {
+        Beer2[] values = Beer2.values();
+        for(Beer2 b:values){
+            System.out.println(b+"--------"+b.getPrice());
+        }
+    }
+}
+
+//output
+KF--------70
+KO--------80
+RC--------90
+FO--------65
+
+Note: - public static final Bear KF=new Bear();
+        public static final Bear KF=new Bear(70);
+
+
+------------------------------------------------------------------------------------------------------------
+Inside enum we can declare methods, but they should be concrete methods only And we cant declare
+abstract methods
+--------------------------------------------------------------------------------------------------------------
+
+CASE-1
+
+ Every enam constant  represents an object of type enum Hence, whatever methods we apply on normal Java objects
+ Can be applicable on enum constants also
+    ex:-
+            Beer.KF.equals(Beer.RC)
+            Beer.KF.ordinal()<Beer.RC.ordinal();
+
+-----------------------------------------------------------------------------------------------------------
+
+CASE -2
+
+If we want to use a class or interface directly from outside package then the required import is normal import
+If we want to  access members without class name then the required import is static import.
+
+import java.util.ArrayList;
+import static java.lang.Math.sqrt;
+
+public class Test3 {
+    public static void main(String[] args) {
+        ArrayList l=new ArrayList<>();
+        System.out.println(sqrt(2));
+    }
+}
+
+package part3.pack1;
+
+public enum Fish {
+    STAR,GUPPY;
+}
+package part3.pack2;
+
+import part3.pack1.Fish;
+import part3.pack1.*;
+
+
+public class Test {
+    public static void main(String[] args) {
+        Fish guppy = Fish.GUPPY;
+
+    }
+}
+package part3.pack3;
+
+import static part3.pack1.Fish.STAR;
+import static part3.pack1.Fish.*;
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(STAR);
+    }
+}
+
+package part3.pack3;
+
+import static part3.pack1.Fish.STAR;
+import static part3.pack1.Fish.*;
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(STAR);
+    }
+}
+
+package part3.pack4;
+
+import part3.pack1.Fish;
+import part3.pack1.*;
+
+
+import static part3.pack1.Fish.GUPPY;
+import static part3.pack1.Fish.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Fish f=Fish.STAR;
+        System.out.println(GUPPY);
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+CASE-3
+
+public enum Color {
+    BLUE, RED{
+        public void info(){
+            System.out.println("Dangerous color");
+        }
+    },
+
+    GREEN;
+
+    public void info(){
+        System.out.println("Universal color");
+    }
+}
+
+class Test4{
+    public static void main(String[] args) {
+        for(Color color:Color.values()){
+            color.info();
+        }
+    }
+}
+
+-------------------------------------------------------------------------------------------------------
+
+                        enum vs Enum vs Enumeration
+
+enum is a keyword in Java that can be used to define a group of named constants
+
+Enum is a class in Java present in java.lang package. Every enum in Java should be direct
+child class of Enum class. Hence, this class acts as a base class for all Java enums
+
+Enumeration Is an interface present java.util package. We can use enumeration object to get objects
+one by one from the collection
+
+
+
+
