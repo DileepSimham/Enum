@@ -1,1 +1,156 @@
-                                    ENUM
+                                    ENUM (Enumeration)
+                   =======================================================
+
+If we want to represent a group of names constants then we should go for enum.
+
+enul Month{
+    JAN,FEB,MAR,...DEC;
+}
+
+enum BEER{
+    KF,RO,RC,FO;
+}
+
+semi colon is optional.
+
+The main objective of enum is to define our own datatype(enumerated datatype).
+
+Enum introduced in 1.5 version when compared with Old languages Java enum is more powerful.
+--------------------------------------------------------------------------------------------
+
+                    Internal implementation of enum
+
+1) Every enum is internally represented By using class concept
+
+2) Every enum constant is always public static final.
+
+3) Every enum constant represents an object of type enum.
+
+enum Beer{
+    KF,RC;
+}
+        is equivalent to
+
+class Beer{
+    Public static final beer KF=new beer();
+    Public static final beer RC =new beer().
+}
+
+----------------------------------------------------------------------------------------------------------
+
+            Enum declaration and usage
+
+Every enum constant is always Public static final.And hence, we can access enum constant by using enum name.
+
+public enum Beer {
+
+    KF, KO, RC, FO;
+}
+
+class Test{
+    public static void main(String[] args) {
+        Beer rc = Beer.RC;
+        System.out.println(rc);
+    }
+}
+
+//output: RC
+
+Inside enum toString method is internally implemented To return name of the constant.
+
+We can declare enum either within the class or outside the class But not inside a method.
+If you're trying to declare inside a method Then we will get compile time error, saying enum types
+must not be local.
+//VALID
+enum X{
+
+}
+class Y{
+
+}
+
+//VALID
+
+class X{
+    enum Y{
+
+    }
+}
+
+//INVALID
+class X{
+    public void m1(){
+        enum Y{
+
+        }
+    }
+}
+
+If we declare enum Outside the class The applicable modifiers are Public default strictfp.
+
+If you declare enum inside the class the applicable modifiers are public, default, strictfp, private,
+protected, static.
+
+----------------------------------------------------------------------------------------------------
+
+                        Enum vs Switch
+
+Until 1.4 version, the allowed argument types For the Switch statement are byte, short, char and int.
+
+from 1.5 version onwards corresponding wrapper classes and enum types are allowed.
+
+From 1.7 version onwards, a string type also allowed.
+
+Hence, from 1.5 version onwards we can pass enum type As argument to switch statement.
+
+public enum Beer2 {
+
+    KF,KO,RC,FO;
+}
+
+class Test2{
+    public static void main(String[] args) {
+        Beer2 b=Beer2.KF;
+
+        switch (b) {
+            case KO -> System.out.println("it's too light");
+            case RC -> System.out.println("it;s not that much kick");
+            case FO -> System.out.println("Buy one get one");
+            case KF -> System.out.println("it's childrens brand");
+
+        }
+    }
+}
+
+If we pass an enum type as argument to switch Statement, Then every case label should be valid enum
+constant Otherwise, we'll get compile time error.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
